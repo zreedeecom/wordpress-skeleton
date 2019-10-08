@@ -1,41 +1,81 @@
 <?php
 
-// ======================
-// Hide errors by default
-// ======================
-@ini_set( 'display_errors', 0 );
+/** Bootstrap our deps */
+try {
+  require dirname(__FILE__) . '/../vendor/autoload.php';
 
-// ===================================================
-// Load database info and local development parameters
-// ===================================================
-if ( file_exists( dirname( __FILE__ ) . '/../production-config.php' ) ) {
-    define( 'WP_LOCAL_DEV', false );
-    include( dirname( __FILE__ ) . '/../production-config.php' );
-} else {
-    define( 'WP_LOCAL_DEV', true );
-    include( dirname( __FILE__ ) . '/../local-config.php' );
+  # Load dotenv library
+  $dotenv = Dotenv\Dotenv::create(__DIR__, '/../.env');
+  $dotenv->load();
+}
+catch(Exception $e) {
+  echo "Something went wrong loading composer dependencies: ${e}";
 }
 
-// ==================
-// Default DB Charset
-// ==================
+
+/**
+ * Define some sensible default configs for our environments
+ *
+ * If you need another environment (like stagging) use the
+ * template to do so.
+ */
+switch (getenv('APP_ENV')) {
+    case 'local':
+        if (file_exists(dirname(__FILE__) . '/../local-config.php')) {
+            include(dirname(__FILE__) . '/../local-config.php');
+        } else {
+            throw new Exception("No config file found for this environment");
+            die();
+        }
+        break;
+    case 'production':
+        if (file_exists(dirname(__FILE__) . '/../production-config.php')) {
+            @ini_set('display_errors', 0); # Hide errors on production
+            define('WP_LOCAL_DEV', false); # Set dev constant to false
+            include(dirname(__FILE__) . '/../production-config.php'); # Include config file
+        } else {
+            throw new Exception("No config file found for this environment");
+            die();
+        }
+        break;
+    /* TEMPLATE
+        case 'new-environment':
+        if (file_exists(dirname(__FILE__) . '/../new-environment-config.php')) {
+            define('WP_LOCAL_DEV', false); # Set dev constant to false
+            include(dirname(__FILE__) . '/../new-environment-config.php'); # Include config file
+        } else {
+            throw new Exception("No config file found for this environment");
+            die();
+        }
+        break;
+    */
+
+    default:
+        throw new Exception('Environment not defined or misspelled.');
+        die();
+        break;
+}
+
+/**
+ * Fallback configs
+ */
 if ( ! defined( 'DB_CHARSET' ) ) {
-    define( 'DB_CHARSET', 'utf8' );   
+    define( 'DB_CHARSET', getenv('DB_CHARSET') );
 }
 
-// ========================
-// Custom Content Directory
-// ========================
+/**
+ * Custom Content Directory
+ */
 if ( ! defined( 'WP_CONTENT_DIR' ) ) {
-    define( 'WP_CONTENT_DIR', dirname( __FILE__ ) . '/wp-content' );
+    define( 'WP_CONTENT_DIR', dirname( __FILE__ ) . getenv('APP_WP_CONTENT_DIR') );
 }
 
-// ==================
-// Custom Content URL
-// ==================
+/**
+ * Custom Content URL
+ */
 if ( ! defined( 'WP_CONTENT_URL' ) && ! empty( $_SERVER['HTTP_HOST'] ) ) {
     $protocol = ( ( ! empty( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] !== 'off' ) || ( isset( $_SERVER['SERVER_PORT'] ) && $_SERVER['SERVER_PORT'] == 443 ) ) ? 'https://' : 'http://';
-    define( 'WP_CONTENT_URL', $protocol . $_SERVER['HTTP_HOST'] . '/wp-content' );
+    define( 'WP_CONTENT_URL', $protocol . $_SERVER['HTTP_HOST'] . getenv('APP_WP_CONTENT_URL') );
 }
 
 // ===========================
