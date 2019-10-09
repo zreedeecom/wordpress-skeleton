@@ -1,4 +1,17 @@
 {
+    "name": "impress/wordpress-skeleton",
+    "type": "project",
+    "description": "WordPress starter setup",
+    "keywords": [
+        "wordpress",
+        "skeleton",
+        "starter"
+    ],
+    "autoload": {
+        "files": [
+            "src/helpers.php"
+        ]
+    },
     "repositories": [
         {
             "type": "composer",
@@ -7,8 +20,10 @@
     ],
     "require": {
         "composer/installers": "1.*",
-        "johnpbloch/wordpress": ">=4.9",
-        "vlucas/phpdotenv": "^3.6"
+        "johnpbloch/wordpress": "5.*",
+        "vlucas/phpdotenv": "^3.6",
+        "wpackagist-theme/twentynineteen": "*",
+        "wpackagist-plugin/wordpress-importer": "*"
     },
     "extra": {
         "wordpress-install-dir": "public/wp",

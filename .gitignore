@@ -10,3 +10,6 @@ local-config.php
 !/public/wp-content/themes/index.php
 /public/wp-content/uploads/*
 !/public/wp-content/uploads/.gitkeep
+
+wp-cli.yml
+.env
