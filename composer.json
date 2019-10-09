@@ -2,6 +2,7 @@
     "name": "impress/wordpress-skeleton",
     "type": "project",
     "description": "WordPress starter setup",
+    "license": "MIT",
     "keywords": [
         "wordpress",
         "skeleton",

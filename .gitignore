@@ -1,7 +1,7 @@
 /public/wp
 /vendor
-production-config.php
-local-config.php
+
+/public/wp-content/upgrade/
 /public/wp-content/debug.log
 /public/wp-content/object-cache.php
 /public/wp-content/plugins/*
@@ -13,3 +13,4 @@ local-config.php
 
 wp-cli.yml
 .env
+.DS_Store
