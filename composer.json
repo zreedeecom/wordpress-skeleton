@@ -10,7 +10,7 @@
     "support": {
         "issues": "URL to the issue tracker",
         "wiki": "URL to the wiki."
-    }
+    },
     "type": "project",
     "version": "1.0",
     "homepage": "An URL to the website of the project.",
