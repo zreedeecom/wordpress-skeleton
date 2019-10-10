@@ -1,12 +1,27 @@
 {
     "name": "impress/wordpress-skeleton",
+    "authors": [
+        {
+            "name": "Luis Giménez",
+            "email": "luis@impr.es",
+            "homepage": "https://impr.es",
+        }
+    ],
+    "support": {
+        "issues": "URL to the issue tracker",
+        "wiki": "URL to the wiki."
+    }
     "type": "project",
-    "description": "WordPress starter setup",
+    "version": "1.0",
+    "homepage": "An URL to the website of the project.",
+    "readme": "README.md",
+    "description": "WordPress starter setup with deploy superpowers",
     "license": "MIT",
     "keywords": [
         "wordpress",
         "skeleton",
-        "starter"
+        "starter",
+        "deployer"
     ],
     "autoload": {
         "files": [
@@ -36,6 +51,7 @@
     },
     "require-dev": {
         "filp/whoops": "^2.5",
-        "kint-php/kint": "^3.2"
+        "kint-php/kint": "^3.2",
+        "deployer/deployer": "6.5.*"
     }
 }

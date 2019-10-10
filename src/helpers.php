@@ -41,3 +41,25 @@ if (!function_exists('env')) {
     return $value;
   }
 }
+
+/**
+ * This helper function gives the ability to convert a string into
+ * an array. Environment variables are not meant to be used like
+ * this, that's why we use a helper function.
+ *
+ * If no items an empty array is returned
+ *
+ * @param string $key
+ * @return array $value
+ */
+if (!function_exists('envToArray')) {
+  function envToArray($key)
+  {
+    $value = getenv($key);
+    $value = str_replace([' ', '[', ']', '\'', '\"'], '', $value); # Clean up value
+    if (empty($value)) return array();
+    $value = explode(',', $value);
+
+    return $value;
+  }
+}

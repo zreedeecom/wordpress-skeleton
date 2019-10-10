@@ -1,2 +1,2 @@
-path: public/wp
-url: http(s)://skeleton.test
+path: public/wp # Path to where your WordPress files are living, this one normally doesn't change.
+url: http(s)://skeleton.test # The URL from where you're going to be accesing your site locally

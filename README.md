@@ -10,6 +10,7 @@ as much as possible under control when managing WordPress sites from the develop
 [TODO] I'll make a micro site to explain the whys and hows of this project. For now basic usage instructions will be given in this readme file to use it.
 
 # TOC <!-- omit in toc -->
+
 - [Disclaimer](#disclaimer)
 - [Usage](#usage)
 - [Deploy](#deploy)
@@ -23,16 +24,35 @@ Pull requests are welcome as long as they are addressing compatibility issues, f
 
 # Usage
 
-1. Clone this repository
-2. Run `composer install`
-3. Copy `local-config.sample.php` to `local-config.php` and fill in the details
-4. Point your web root to the `/public` directory
+## Install
 
-Note: If you're running on production copy `local-config.sample.php` to `production-config.php`.
+1. Clone this repository `git clone REPO_LINK my-project`
+2. Run `composer install`
+3. Rename `.env.example` and `wp-cli.yml.example` to `.env` and `wp-cli.yml`
+4. Create your database if you haven't already
+5. Fill in the details in `.env` and `wp-cli.yml` for the environment you're working on
+6. Point your web root to the `/public` directory
+7. Now visit the website and follow install instructions or import your database
+8. Optionally, you can import the official WPTRT dummy data to have something to work with
+
+## Add/Remove plugins from the WordPress.org repository
+
+[TODO]
+
+## Add/Remove plugins/themes from another repository
+
+[TODO]
 
 # Deploy
 
 For the deploying process we opted for [Deployer](https://deployer.org/) because of its ease of use, the built-in atomic deployments (aka zero downtime deployments) and it's free!
+
+## Asumptions
+
+- You have SSH access to the server
+- You have an SSH key on the server linked to your GitHub account/repository for the pulls.
+
+Note: If you're running on production copy `local-config.sample.php` to `production-config.php`.
 
 # Credits
 
