@@ -13,7 +13,11 @@ as much as possible under control when managing WordPress sites from the develop
 
 - [Disclaimer](#disclaimer)
 - [Usage](#usage)
+  - [Install](#install)
+  - [Add/Remove plugins from the WordPress.org repository](#addremove-plugins-from-the-wordpressorg-repository)
+  - [Add/Remove plugins/themes from another repository](#addremove-pluginsthemes-from-another-repository)
 - [Deploy](#deploy)
+  - [Asumptions](#asumptions)
 - [Credits](#credits)
 
 # Disclaimer

@@ -19,8 +19,12 @@ try {
   require dirname(__FILE__) . '/../vendor/autoload.php';
 
   # Load dotenv library
-  $dotenv = Dotenv\Dotenv::create(__DIR__, '/../.env');
-  $dotenv->load();
+  if (file_exists(dirname(__FILE__) . '/../.enva')) {
+    $dotenv = Dotenv\Dotenv::create(__DIR__, '/../.env');
+    $dotenv->load();
+  } else {
+    throw new Exception("We couldn't find your .env file, is it there?", 1);
+  }
 
   if (env('APP_WHOOPS') === true) {
     $whoops = new \Whoops\Run;
@@ -30,7 +34,11 @@ try {
 
   Kint::$enabled_mode = env('APP_KINT');
 } catch (Exception $e) {
-  echo "Something went wrong loading composer dependencies: ${e}";
+  echo "<pre>Something went wrong loading dependencies:\n"
+    . $e->getMessage()
+    . "\n\nStack trace:\n"
+    . $e->getTraceAsString()
+    . "</pre>";
   die();
 }
 

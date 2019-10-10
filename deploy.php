@@ -1,17 +1,21 @@
 <?php
-/* Load dependencies */
-require dirname(__FILE__) . './vendor/autoload.php';
-
-# Load dotenv library
-$dotenv = Dotenv\Dotenv::create(__DIR__, './.env');
-$dotenv->load();
 
 namespace Deployer;
+
+# Load dependencies
+require dirname(__FILE__) . '/vendor/autoload.php';
+
+# Load dotenv library
+use Dotenv;
+
+$dotenv = Dotenv\Dotenv::create(__DIR__, '/.env');
+$dotenv->load();
+###
 
 require 'recipe/common.php';
 
 // Project name
-set('application', env('APP_NAME'));
+set('application', env('DEP_APP_NAME'));
 
 // Project repository
 set('repository', env('DEP_REPO'));
@@ -36,7 +40,7 @@ set('composer_action', 'install');
 set('composer_options', '{{composer_action}} --verbose --no-interaction --no-dev --optimize-autoloader --no-suggest');
 
 // Tasks
-desc('Deploy your awesome project');
+desc('Deploying your awesome project');
 task('deploy', [
   'deploy:info',
   'deploy:prepare',
@@ -54,7 +58,7 @@ task('deploy', [
 ]);
 
 task('test', function () {
-  writeln('Hello world');
+  writeln('Hello world! 🤓');
 });
 task('pwd', function () {
   $result = run('pwd');

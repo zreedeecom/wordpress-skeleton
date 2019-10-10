@@ -4,16 +4,16 @@
         {
             "name": "Luis Giménez",
             "email": "luis@impr.es",
-            "homepage": "https://impr.es",
+            "homepage": "https://impr.es"
         }
     ],
     "support": {
-        "issues": "URL to the issue tracker",
-        "wiki": "URL to the wiki."
+        "issues": "http://URL-to-the-issue.tracker",
+        "wiki": "http://URL-to-the.wiki"
     },
     "type": "project",
     "version": "1.0",
-    "homepage": "An URL to the website of the project.",
+    "homepage": "http://An-URL-to-the-website-of-the.project",
     "readme": "README.md",
     "description": "WordPress starter setup with deploy superpowers",
     "license": "MIT",
