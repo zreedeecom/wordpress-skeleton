@@ -22,9 +22,9 @@ try {
   if (file_exists(dirname(__FILE__) . '/../.env')) {
     $dotenv = Dotenv\Dotenv::create(__DIR__, '/../.env');
     $dotenv->load();
-  } elseif (file_exists(dirname(__FILE__) . '/../../.env')) {
-    $dotenv = Dotenv\Dotenv::create(__DIR__, '/../../.env');
-    $dotenv->load();
+    // } elseif (file_exists(dirname(__FILE__) . '/../../.env')) {
+    //   $dotenv = Dotenv\Dotenv::create(__DIR__, '/../../.env');
+    //   $dotenv->load();
   } else {
     throw new Exception("We couldn't find your .env file, is it there?", 1);
   }
@@ -44,6 +44,10 @@ try {
     . "</pre>";
   die();
 }
+
+d(dirname(__FILE__), __DIR__);
+exit();
+
 
 /**
  * Database details

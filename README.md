@@ -101,6 +101,7 @@ If you want more info about the available options and how it works read the [Dep
 
 In this file you store all the info that Deployer needs to deploy your site on your server. The info provided is for just one server but you can extend it to have multiple server or even multiple stages on same or different servers.
 
+[You can read more about the inventory file here](https://deployer.org/docs/hosts.html#inventory-file).
 ## First deployment
 **Check that your webroot on the server is pointing to `…/current/public`**
 
@@ -112,10 +113,9 @@ or
 
 If everything went well you should see the entire process going on your terminal.
 
-If it doesn't read the errors, fix them and try again, still not working? Re-read the errors fix them and try again. Still not 🤬 working? Open an issue and I will try to help.
+If it doesn't.. read the errors, fix them and try again, still not working? **Re-read** the errors fix them and try again. Still not 🤬 working? Open an issue and I will try to help.
 
-
-[You can read more about the inventory file here](https://deployer.org/docs/hosts.html#inventory-file).
+Let's asume your deployment was correct, now if you visit the website you will see an error about the .env file, that's fine.
 
 # Credits
 
