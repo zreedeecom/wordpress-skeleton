@@ -8,8 +8,23 @@ require dirname(__FILE__) . '/vendor/autoload.php';
 # Load dotenv library
 use Dotenv;
 
-$dotenv = Dotenv\Dotenv::create(__DIR__, '/.env');
-$dotenv->load();
+if (file_exists(__DIR__ . '/.env')) {
+  $dotenv = Dotenv\Dotenv::create(__DIR__, '/.env');
+  $dotenv->load();
+  $dotenv->required([
+    'DEP_APP_NAME',
+    'DEP_REPO',
+    'DEP_BRANCH',
+    'DEP_KEEP_RELEASES'
+  ])->notEmpty();
+  $dotenv->required([
+    'DEP_SHARED_DIRS',
+    'DEP_SHARED_FILES',
+    'DEP_WRITABLE_DIRS'
+  ]);
+} else {
+  exit("We couldn't find your .env file, is it there?");
+}
 ###
 
 require 'recipe/common.php';
@@ -33,7 +48,7 @@ set('shared_dirs', envToArray('DEP_SHARED_DIRS'));
 set('writable_dirs', envToArray('DEP_WRITABLE_DIRS'));
 
 // Hosts
-// inventory('hosts.yml');
+if (file_exists('hosts.yml')) inventory('hosts.yml');
 
 // Composer stuff
 set('composer_action', 'install');
@@ -57,13 +72,11 @@ task('deploy', [
   'success'
 ]);
 
+// Test task
 task('test', function () {
   writeln('Hello world! 🤓');
-});
-task('pwd', function () {
-  $result = run('pwd');
-  writeln("Current dir: $result");
-});
+})->local();
+
 
 // [Optional] If deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
