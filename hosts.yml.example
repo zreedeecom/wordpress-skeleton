@@ -1,0 +1,12 @@
+production.com:
+  hostname: 123.456.789 # Server IP
+  user: root # Your SSH user to connect to the server
+  port: 22 # SSH Port, usually 22
+  identityFile: ~/.ssh/id_rsa # Point it to the key you use to SSH in that server
+  forwardAgent: false
+  multiplexing: true
+  sshOptions:
+    UserKnownHostsFile: /dev/null
+    StrictHostKeyChecking: no
+  stage: production
+  deploy_path: ~/files # Read the docs to find this out

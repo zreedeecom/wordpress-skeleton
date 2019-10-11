@@ -18,6 +18,10 @@ as much as possible under control when managing WordPress sites from the develop
   - [Add/Remove plugins/themes from another repository](#addremove-pluginsthemes-from-another-repository)
 - [Deploy](#deploy)
   - [Asumptions](#asumptions)
+  - [Usage](#usage-1)
+  - [First use](#first-use)
+    - [hosts.yml](#hostsyml)
+  - [First deployment](#first-deployment)
 - [Credits](#credits)
 
 # Disclaimer
@@ -39,6 +43,8 @@ Pull requests are welcome as long as they are addressing compatibility issues, f
 7. Now visit the website and follow install instructions or import your database
 8. Optionally, you can import the official WPTRT dummy data to have something to work with
 
+Bonus: To fix weird behaviours with WP-ClirRename `wp-cli.yml.example` to `wp-cli.yml` and edit contents accordingly.
+
 ## Add/Remove plugins from the WordPress.org repository
 
 [TODO]
@@ -51,12 +57,63 @@ Pull requests are welcome as long as they are addressing compatibility issues, f
 
 For the deploying process we opted for [Deployer](https://deployer.org/) because of its ease of use, the built-in atomic deployments (aka zero downtime deployments) and it's free!
 
+Deployer is required dev dependency.
+
 ## Asumptions
 
 - You have SSH access to the server
-- You have an SSH key on the server linked to your GitHub account/repository for the pulls.
+- You have an SSH key on the server linked to your GitHub account/repository for the pulls. (I'll make a tuto on this one)
 
 Note: If you're running on production copy `local-config.sample.php` to `production-config.php`.
+
+## Usage
+Deployer will help you with the deployment of the site (just the files for now).
+
+Basically the way Deployer works is:
+1. It connects via SSH to your server
+2. Clones your repository on the server
+3. Installs dependencies
+4. Symlinks the `current` folder to the latest release
+
+That means you need to trigger the deploy manually, it will not pull the repo whenever you push to master/production/whatever-branch-you-set (aka Push To Deploy).
+
+## First use
+First of all open a terminal, cd into your project if you haven't already and check that you have access to the tool by typing `dep test`
+
+You should be getting this output:
+```shell
+$ dep test
+➤ Executing task test
+Hello world! 🤓
+✔ Ok
+```
+
+If you don't deployer installed globally use `vendor/bin/dep test`
+
+Once you get that output we know Deployer is reachable and ready to get instructions.
+
+Now rename `hosts.yml.example` to `hosts.yml` and fill in the server details.
+If you want more info about the available options and how it works read the [Deployer docs](https://deployer.org/docs/hosts.html).
+
+### hosts.yml
+
+In this file you store all the info that Deployer needs to deploy your site on your server. The info provided is for just one server but you can extend it to have multiple server or even multiple stages on same or different servers.
+
+## First deployment
+**Check that your webroot on the server is pointing to `…/current/public`**
+
+Once again check you've got your `hosts.yml` details in and you filled the `# Deploy Settings` block of the `.env` file and then 🔥
+
+`$ dep deploy production`  
+or  
+`$ vendor/bin/dep deploy production`
+
+If everything went well you should see the entire process going on your terminal.
+
+If it doesn't read the errors, fix them and try again, still not working? Re-read the errors fix them and try again. Still not 🤬 working? Open an issue and I will try to help.
+
+
+[You can read more about the inventory file here](https://deployer.org/docs/hosts.html#inventory-file).
 
 # Credits
 
