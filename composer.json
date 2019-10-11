@@ -37,7 +37,7 @@
     "require": {
         "composer/installers": "1.*",
         "johnpbloch/wordpress": "5.*",
-        "vlucas/phpdotenv": "^3.6",
+        "vlucas/phpdotenv": "3.6",
         "wpackagist-theme/twentynineteen": "*",
         "wpackagist-plugin/wordpress-importer": "*"
     },
@@ -50,8 +50,8 @@
         }
     },
     "require-dev": {
-        "filp/whoops": "^2.5",
-        "kint-php/kint": "^3.2",
+        "filp/whoops": "2.5.*",
+        "kint-php/kint": "3.2.*",
         "deployer/deployer": "6.5.*"
     }
 }
