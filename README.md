@@ -1,3 +1,5 @@
+# THIS IS A WORK IN PROGRESS!! DON'T USE IT YET, HELP IS WELCOME<!-- omit in toc -->
+
 # WordPress Skeleton <!-- omit in toc -->
 
 Maybe not a complete solution for managing WordPress as a nerd but close to it 🤓
