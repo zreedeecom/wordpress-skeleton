@@ -19,7 +19,7 @@ try {
   require dirname(__FILE__) . '/../vendor/autoload.php';
 
   # Load dotenv library
-  if (file_exists(dirname(__FILE__) . '/../.enva')) {
+  if (file_exists(dirname(__FILE__) . '/../.env')) {
     $dotenv = Dotenv\Dotenv::create(__DIR__, '/../.env');
     $dotenv->load();
   } else {
