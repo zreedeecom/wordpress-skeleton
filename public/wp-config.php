@@ -45,9 +45,6 @@ try {
   die();
 }
 
-d(dirname(__FILE__), __DIR__);
-exit();
-
 
 /**
  * Database details
