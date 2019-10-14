@@ -41,8 +41,8 @@ try {
 } catch (Exception $e) {
   echo "<pre>Something went wrong loading dependencies:\n"
     . $e->getMessage()
-    . "\n\nStack trace:\n"
-    . $e->getTraceAsString()
+    // . "\n\nStack trace:\n"
+    // . $e->getTraceAsString()
     . "</pre>";
   die();
 }
