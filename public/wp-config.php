@@ -20,10 +20,12 @@ try {
 
   # Load dotenv library
   if (file_exists(dirname(__FILE__) . '/../.env')) {
+    # we are in local
     $dotenv = Dotenv\Dotenv::create(__DIR__, '/../.env');
     $dotenv->load();
-  } elseif (file_exists(dirname(__FILE__) . '/../../../.env')) {
-    $dotenv = Dotenv\Dotenv::create(__DIR__, '/../../.env');
+  } elseif (file_exists(__DIR__ . '/../../../.env')) {
+    # we are in server
+    $dotenv = Dotenv\Dotenv::create(__DIR__, '/../../../.env');
     $dotenv->load();
   } else {
     throw new Exception("We couldn't find your .env file, is it there?", 1);
