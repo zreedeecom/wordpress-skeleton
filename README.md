@@ -80,17 +80,17 @@ Basically the way Deployer works is:
 That means you need to trigger the deploy manually, it will not pull the repo whenever you push to master/production/whatever-branch-you-set (aka Push To Deploy).
 
 ## First use
-First of all open a terminal, cd into your project if you haven't already and check that you have access to the tool by typing `dep test`
+First of all open a terminal, cd into your project if you haven't already and check that you have access to the tool by typing `dep test localhost`.
 
 You should be getting this output:
 ```shell
-$ dep test
+$ dep test localhost
 ➤ Executing task test
 Hello world! 🤓
 ✔ Ok
 ```
 
-If you don't deployer installed globally use `vendor/bin/dep test`
+If you don't have deployer installed globally use `vendor/bin/dep test localhost` instead. Same output should be produced.
 
 Once you get that output we know Deployer is reachable and ready to get instructions.
 
@@ -102,10 +102,11 @@ If you want more info about the available options and how it works read the [Dep
 In this file you store all the info that Deployer needs to deploy your site on your server. The info provided is for just one server but you can extend it to have multiple server or even multiple stages on same or different servers.
 
 [You can read more about the inventory file here](https://deployer.org/docs/hosts.html#inventory-file).
-## First deployment
-**Check that your webroot on the server is pointing to `…/current/public`**
 
-Once again check you've got your `hosts.yml` details in and you filled the `# Deploy Settings` block of the `.env` file and then 🔥
+## First deployment
+**Check that your webroot on the server is pointing to `…/current/public` because that's the folder where our current release is going to be loaded.**
+
+Once again check that you've got your `hosts.yml` details in and you filled the `# Deploy Settings` block of the `.env` file and then 🔥
 
 `$ dep deploy production`  
 or  
@@ -116,6 +117,10 @@ If everything went well you should see the entire process going on your terminal
 If it doesn't.. read the errors, fix them and try again, still not working? **Re-read** the errors fix them and try again. Still not 🤬 working? Open an issue and I will try to help.
 
 Let's asume your deployment was correct, now if you visit the website you will see an error about the .env file, that's fine.
+
+As a one time operation you'll have to manually upload a .env file (with the correct settings for production) to the same folder we are deploying to (see hosts.yml).
+
+Now you have two options.. you can import a database (not going to explain this as it's out of the scope) or proceed installing from scratch by visiting `http(s)://yourdomain.com/wp`
 
 # Credits
 
