@@ -41,7 +41,9 @@
         "wpackagist-theme/twentynineteen": "*",
         "wpackagist-plugin/wordpress-importer": "*",
         "filp/whoops": "2.5.*",
-        "kint-php/kint": "3.2.*"
+        "kint-php/kint": "3.2.*",
+        "tareq1988/wp-eloquent": "dev-master",
+        "deliciousbrains/wp-migrations": "*"
     },
     "extra": {
         "wordpress-install-dir": "public/wp",

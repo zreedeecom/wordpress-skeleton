@@ -41,22 +41,9 @@ try {
 } catch (Exception $e) {
   echo "<pre>Something went wrong loading dependencies:\n"
     . $e->getMessage()
-    // . "\n\nStack trace:\n"
-    // . $e->getTraceAsString()
     . "</pre>";
   die();
 }
-
-
-/**
- * Database details
- */
-define('DB_NAME',     env('DB_NAME'));
-define('DB_USER',     env('DB_USER'));
-define('DB_PASSWORD', env('DB_PASSWORD'));
-define('DB_HOST',     env('DB_HOST'));
-define('DB_CHARSET',  env('DB_CHARSET'));
-$table_prefix =       env('TABLE_PREFIX');
 
 /**
  * Error reporting
@@ -69,6 +56,17 @@ error_reporting(env('APP_ERROR_REPORTING'));
 define('WP_DEBUG',         env('WP_DEBUG'));
 define('WP_DEBUG_LOG',     env('WP_DEBUG_LOG'));
 define('WP_DEBUG_DISPLAY', env('WP_DEBUG_DISPLAY'));
+
+/**
+ * Database details
+ */
+define('DB_NAME',     env('DB_NAME'));
+define('DB_USER',     env('DB_USER'));
+define('DB_PASSWORD', env('DB_PASSWORD'));
+define('DB_HOST',     env('DB_HOST'));
+define('DB_CHARSET',  env('DB_CHARSET'));
+$table_prefix =       env('TABLE_PREFIX');
+
 
 /**
  * Custom Content Directory
